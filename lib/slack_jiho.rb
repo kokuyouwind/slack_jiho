@@ -12,5 +12,9 @@ module SlackJiho
     def notifier
       @notifier ||= ::Slack::Notifier.new(ENV['SLACK_WEBHOOK_URL'])
     end
+
+    def cron_string
+      ENV['CRON_STRING']
+    end
   end
 end
