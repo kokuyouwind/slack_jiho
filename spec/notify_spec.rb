@@ -24,6 +24,21 @@ RSpec.describe SlackJiho::Notify do
       end
     end
 
+    shared_examples '30秒未満のズレがあっても時報を通知する' do |diff|
+      let(:time) { Time.local(2017, 1, 1, 10) + diff }
+      it do
+        expect(notifier).to receive(:post).with(text: 'だいたい午前10時くらいをお知らせします')
+        described_class.notify_jiho(time)
+      end
+    end
+
+    shared_examples '30秒以上のズレがあったら時報を通知しない' do |diff|
+      let(:time) { Time.local(2017, 1, 1, 10) + diff }
+      it do
+        expect(notifier).not_to receive(:post)
+      end
+    end
+
     context 'cron設定がないとき' do
       let(:cron_string) { nil }
       it_behaves_like '時報を通知する', 0, 'だいたい午前0時くらいをお知らせします'
@@ -43,6 +58,11 @@ RSpec.describe SlackJiho::Notify do
       it_behaves_like '時報を通知する', 19, 'だいたい午後7時くらいをお知らせします'
       it_behaves_like '時報を通知しない', 20
       it_behaves_like '時報を通知しない', 23
+
+      it_behaves_like '30秒未満のズレがあっても時報を通知する', 29
+      it_behaves_like '30秒未満のズレがあっても時報を通知する', -29
+      it_behaves_like '30秒以上のズレがあったら時報を通知しない', 30
+      it_behaves_like '30秒以上のズレがあったら時報を通知しない', -30
     end
   end
 end
