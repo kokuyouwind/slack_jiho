@@ -1,28 +1,10 @@
 # SlackJiho
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/slack_jiho`. To experiment with that code, run `bin/console` for an interactive prompt.
+Slackに時報を通知します。
 
-TODO: Delete this and the text above, and describe your gem
+## Deployment
 
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'slack_jiho'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install slack_jiho
-
-## Usage
-
-TODO: Write usage instructions here
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## Development
 

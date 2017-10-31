@@ -1,0 +1,21 @@
+{
+  "name": "Slack時報",
+  "description": "Slackで時報を通知します",
+  "keywords": [
+    "Slack",
+    "jiho"
+  ],
+  "repository": "https://github.com/kokuyouwind/slack_jiho",
+  "logo": "https://raw.githubusercontent.com/kokuyouwind/slack_jiho/master/icon.png",
+  "env": {
+    "SLACK_WEBHOOK_URL": {
+      "description": "Slack WebHook URL for jiho",
+      "value": ""
+    },
+    "CRON_STRING": {
+      "description": "Notify time setting by cron format. If empty, notify all.",
+      "value": ""
+    }
+  },
+  "addons": ["scheduler"]
+}
