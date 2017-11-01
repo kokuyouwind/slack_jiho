@@ -14,8 +14,10 @@
     },
     "CRON_STRING": {
       "description": "Notify time setting by cron format. If empty, notify all.",
-      "value": ""
-    }
+      "value": "0 * * * *",
+      "required": false
+    },
+    "TZ": "Asia/Tokyo"
   },
   "addons": ["scheduler"]
 }
