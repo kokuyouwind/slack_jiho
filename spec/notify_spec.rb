@@ -2,12 +2,13 @@ require 'spec_helper'
 
 RSpec.describe SlackJiho::Notify do
   let(:notifier) { double('slack-notifier') }
-  before do
-    allow(SlackJiho).to receive(:notifier).and_return(notifier)
-    allow(SlackJiho).to receive(:cron_string).and_return(cron_string)
-  end
 
   describe '#notify_jiho' do
+    before do
+      allow(SlackJiho).to receive(:notifier).and_return(notifier)
+      allow(SlackJiho).to receive(:cron_string).and_return(cron_string)
+    end
+
     shared_examples '時報を通知する' do |hour, text|
       let(:time) { Time.local(2017, 1, 1, hour) }
       it do
@@ -63,6 +64,15 @@ RSpec.describe SlackJiho::Notify do
       it_behaves_like '30秒未満のズレがあっても時報を通知する', -29
       it_behaves_like '30秒以上のズレがあったら時報を通知しない', 30
       it_behaves_like '30秒以上のズレがあったら時報を通知しない', -30
+    end
+  end
+
+  describe '#adhoc_notify' do
+    let(:time) { Time.local(2017, 1, 1, 0) }
+
+    it '任意のメッセージを通知する' do
+      expect(notifier).to receive(:post).with(text: 'test')
+      described_class.adhoc_notify('* * * * *', notifier, 'test', time)
     end
   end
 end
