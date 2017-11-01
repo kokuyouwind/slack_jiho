@@ -2,6 +2,10 @@ PATH
   remote: .
   specs:
     slack_jiho (0.1.0)
+      dotenv
+      slack-notifier
+      thor
+      whedon
 
 GEM
   remote: https://rubygems.org/
@@ -35,13 +39,9 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.15)
-  dotenv
   rake (~> 10.0)
   rspec (~> 3.0)
-  slack-notifier
   slack_jiho!
-  thor
-  whedon
 
 BUNDLED WITH
    1.15.4
